@@ -23,7 +23,7 @@ const Index = () => {
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold text-white leading-tight animate-glow">
               Trust Us on
-              <span className="block text-primary animate-glow">
+              <span className="block text-primary">
                 Your Big Day
               </span>
             </h1>
