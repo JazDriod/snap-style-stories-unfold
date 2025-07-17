@@ -6,13 +6,6 @@ import Header from "@/components/Header";
 const Index = () => {
   return (
     <div className="min-h-screen hero-gradient relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-primary/20 rounded-full blur-3xl floating-element"></div>
-        <div className="absolute bottom-40 right-32 w-48 h-48 bg-primary/10 rounded-full blur-3xl floating-element" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/5 rounded-full blur-2xl floating-element" style={{animationDelay: '2s'}}></div>
-      </div>
-
       <Header />
 
       {/* Main Content */}
