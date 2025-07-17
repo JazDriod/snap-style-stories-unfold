@@ -84,6 +84,22 @@ All colors MUST be HSL.
     @apply translate-x-[100%];
   }
 
+  .page-transition {
+    @apply transition-all duration-500 ease-in-out;
+  }
+
+  .page-transition:hover {
+    @apply transform scale-105;
+  }
+
+  .page-fade-in {
+    animation: pageIn 0.5s ease-in-out;
+  }
+
+  .page-fade-out {
+    animation: pageOut 0.3s ease-in-out;
+  }
+
   .hero-gradient {
     background: linear-gradient(135deg, #000000 0%, #1a1a1a 30%, #2a2a2a 70%, #000000 100%);
   }
@@ -105,5 +121,27 @@ All colors MUST be HSL.
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pageIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes pageOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
   }
 }

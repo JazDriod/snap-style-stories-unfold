@@ -20,22 +20,22 @@ const Index = () => {
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
           {/* Main Heading */}
           <div className="space-y-4">
-            <div className="flex items-center justify-center space-x-2 mb-6">
+            <div className="flex items-center justify-center space-x-2 mb-6 animate-glow">
               <Sparkles className="w-6 h-6 text-primary animate-pulse" />
-              <span className="text-primary font-inter font-medium tracking-wider uppercase text-sm">
+              <span className="text-primary font-inter font-medium tracking-wider uppercase text-sm animate-glow">
                 Professional Photography
               </span>
               <Sparkles className="w-6 h-6 text-primary animate-pulse" />
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold text-white leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold text-white leading-tight animate-glow">
               Trust Us on
               <span className="block text-primary animate-glow">
                 Your Big Day
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 font-inter font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-300 font-inter font-light max-w-2xl mx-auto leading-relaxed animate-glow">
               Capturing life's most precious moments with artistic excellence and timeless elegance
             </p>
           </div>
@@ -44,7 +44,7 @@ const Index = () => {
           <div className="pt-8 animate-slide-up">
             <Link 
               to="/about"
-              className="glass-button inline-flex items-center space-x-3 px-8 py-4 rounded-full text-lg font-inter font-medium group"
+              className="glass-button inline-flex items-center space-x-3 px-8 py-4 rounded-full text-lg font-inter font-medium group page-transition"
             >
               <span>Click here to know about us</span>
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -60,7 +60,7 @@ const Index = () => {
             ].map((feature, index) => (
               <div 
                 key={feature.title}
-                className="text-center space-y-2 opacity-70 hover:opacity-100 transition-opacity duration-300"
+                className="text-center space-y-2 opacity-70 hover:opacity-100 transition-opacity duration-300 animate-glow"
                 style={{animationDelay: `${index * 0.2}s`}}
               >
                 <h3 className="text-white font-playfair font-semibold">{feature.title}</h3>

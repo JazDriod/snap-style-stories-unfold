@@ -1,5 +1,5 @@
 
-import { Camera, Home, Phone } from "lucide-react";
+import { Aperture, Home, Phone } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 interface HeaderProps {
@@ -15,8 +15,8 @@ const Header = ({ showHomeIcon = false }: HeaderProps) => {
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2 group">
-          <Camera className="w-8 h-8 text-primary transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
-          <span className="text-2xl font-playfair font-bold text-white group-hover:text-primary transition-colors duration-300">
+          <Aperture className="w-8 h-8 text-primary transition-all duration-300 group-hover:rotate-12 group-hover:scale-110" />
+          <span className="text-2xl font-playfair font-bold text-transparent bg-gradient-to-r from-primary to-white bg-clip-text border border-primary/30 px-3 py-1 rounded-md group-hover:border-primary/60 transition-all duration-300">
             D-Snaps
           </span>
         </Link>
