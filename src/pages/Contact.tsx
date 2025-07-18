@@ -3,17 +3,19 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import Header from "@/components/Header";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -27,7 +29,7 @@ const Contact = () => {
     if (!formData.name || !formData.email || !formData.phone) {
       toast({
         title: "Please fill in all fields",
-        description: "All fields are required to submit your details.",
+        description: "Name, email, and phone are required to submit your details.",
         variant: "destructive"
       });
       return;
@@ -35,8 +37,20 @@ const Contact = () => {
 
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const { error } = await supabase
+        .from('contacts')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message || null
+        }]);
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: "We will get back to you soon!",
         description: "Thank you for your interest. We'll contact you within 24 hours.",
@@ -44,9 +58,17 @@ const Contact = () => {
       });
       
       // Reset form
-      setFormData({ name: "", email: "", phone: "" });
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast({
+        title: "Error submitting form",
+        description: "There was a problem submitting your details. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -128,6 +150,21 @@ const Contact = () => {
                     className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                     placeholder="Enter your phone number"
                     required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-gray-300 font-inter font-medium mb-2">
+                    Message (Optional)
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 resize-none"
+                    placeholder="Tell us about your photography needs..."
                   />
                 </div>
 
