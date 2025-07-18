@@ -2,10 +2,19 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
+import weddingBackground from "@/assets/wedding-background.jpg";
 
 const Index = () => {
   return (
-    <div className="min-h-screen hero-gradient relative overflow-hidden">
+    <div 
+      className="min-h-screen relative overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${weddingBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <Header />
 
       {/* Main Content */}
