@@ -47,18 +47,18 @@ const Index = () => {
           {/* CTA Buttons */}
           <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              to="/about"
+              to={user ? "/about" : "/auth"}
               className="glass-button inline-flex items-center space-x-3 px-8 py-4 rounded-full text-lg font-inter font-medium group page-transition"
             >
-              <span>Click here to know about us</span>
+              <span>{user ? "Click here to know about us" : "Sign in to know about us"}</span>
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
             </Link>
             
             <Link 
-              to="/contact" 
+              to={user ? "/contact" : "/auth"}
               className="glass-button inline-flex items-center space-x-3 px-8 py-4 rounded-full text-lg font-inter font-medium hover:scale-105 transition-all duration-300 group"
             >
-              <span>Get In Touch</span>
+              <span>{user ? "Get In Touch" : "Sign in to get in touch"}</span>
               <Heart className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
             </Link>
             
