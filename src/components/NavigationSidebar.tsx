@@ -41,14 +41,36 @@ const NavigationSidebar = () => {
               <span className="text-lg">Home</span>
             </Link>
             
-            <Link 
-              to="/contact" 
-              className="flex items-center space-x-3 text-white hover:text-primary transition-colors duration-300 p-3 rounded-md hover:bg-white/10"
-              onClick={closeSheet}
-            >
-              <Phone className="w-5 h-5" />
-              <span className="text-lg">Contact Us</span>
-            </Link>
+            {user && (
+              <>
+                <Link 
+                  to="/about" 
+                  className="flex items-center space-x-3 text-white hover:text-primary transition-colors duration-300 p-3 rounded-md hover:bg-white/10"
+                  onClick={closeSheet}
+                >
+                  <User className="w-5 h-5" />
+                  <span className="text-lg">About</span>
+                </Link>
+                
+                <Link 
+                  to="/services" 
+                  className="flex items-center space-x-3 text-white hover:text-primary transition-colors duration-300 p-3 rounded-md hover:bg-white/10"
+                  onClick={closeSheet}
+                >
+                  <Home className="w-5 h-5" />
+                  <span className="text-lg">Services</span>
+                </Link>
+                
+                <Link 
+                  to="/contact" 
+                  className="flex items-center space-x-3 text-white hover:text-primary transition-colors duration-300 p-3 rounded-md hover:bg-white/10"
+                  onClick={closeSheet}
+                >
+                  <Phone className="w-5 h-5" />
+                  <span className="text-lg">Contact Us</span>
+                </Link>
+              </>
+            )}
 
             {user ? (
               <>
