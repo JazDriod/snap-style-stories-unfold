@@ -45,7 +45,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signOut = async () => {
+    const currentUser = user;
     const { error } = await supabase.auth.signOut();
+    
+    // Log the logout attempt
+    if (currentUser) {
+      await supabase.from('auth_logs').insert({
+        user_id: currentUser.id,
+        action_type: 'logout',
+        success: !error,
+        error_message: error?.message || null
+      });
+    }
+    
     if (error) {
       console.error("Error signing out:", error);
     }

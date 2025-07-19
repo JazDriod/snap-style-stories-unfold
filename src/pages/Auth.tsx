@@ -32,13 +32,23 @@ const Auth = () => {
 
     const redirectUrl = `${window.location.origin}/`;
     
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: redirectUrl
       }
     });
+
+    // Log the signup attempt
+    if (data.user) {
+      await supabase.from('auth_logs').insert({
+        user_id: data.user.id,
+        action_type: 'signup',
+        success: !error,
+        error_message: error?.message || null
+      });
+    }
 
     if (error) {
       toast({
@@ -59,10 +69,20 @@ const Auth = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+
+    // Log the login attempt
+    if (data.user) {
+      await supabase.from('auth_logs').insert({
+        user_id: data.user.id,
+        action_type: 'login',
+        success: !error,
+        error_message: error?.message || null
+      });
+    }
 
     if (error) {
       toast({
